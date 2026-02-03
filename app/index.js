@@ -10,6 +10,10 @@ var fs = require("fs");
 var handlers = require("./lib/handlers");
 var helpers = require("./lib/helpers");
 
+helpers.sendTwilioSms("4158375309", "Hello!", function(err) {
+console.log('error with twilio', err)
+})
+
 // for testing
 // var _data = require("./lib/data");
 // _data.create("test", "test", { foo: "hellooo" }, function (data) {
