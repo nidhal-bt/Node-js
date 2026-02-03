@@ -140,4 +140,5 @@ var router = {
   users: handlers.users,
   ping: handlers.ping,
   tokens: handlers.tokens,
+  checks: handlers.checks
 };
