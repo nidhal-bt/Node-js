@@ -45,7 +45,7 @@ lib.create = function (dir, file, data, callback) {
       } else {
         callback("Could not create new file, it may already exist");
       }
-    }
+    },
   );
 };
 
@@ -65,7 +65,7 @@ lib.read = function (dir, file, callback) {
       } else {
         callback(err, data);
       }
-    }
+    },
   );
 };
 
@@ -109,7 +109,7 @@ lib.update = function (dir, file, data, callback) {
       } else {
         callback("Could not open the file for updating, it may not existe yet");
       }
-    }
+    },
   );
 };
 
@@ -120,6 +120,21 @@ lib.delete = function (dir, file, callback) {
       callback(false);
     } else {
       callback("Error deleting file");
+    }
+  });
+};
+
+// List all the items in a directory
+lib.list = function (dir, callback) {
+  fs.readdir(lib.baseDir + dir + "/", function (err, data) {
+    if (!err && data && data.length > 0) {
+      var trimmedFileNames = [];
+      data.forEach(function (fileName) {
+        trimmedFileNames.push(fileName.replace(".json", ""));
+      });
+      callback(false, trimmedFileNames);
+    } else {
+      callback(err, data);
     }
   });
 };
